@@ -1,3 +1,5 @@
+Theme Function
+
 <?php
 
 // remove unnecessary header information
