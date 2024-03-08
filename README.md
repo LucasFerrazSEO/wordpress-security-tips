@@ -6,4 +6,4 @@ Resources and functions:
 - Theme functions: https://github.com/LucasFerraz/wordpress-security-tips/blob/main/functions.php
 - Cloudflare rules: https://github.com/LucasFerraz/wordpress-security-tips/blob/main/cloudflare%20rules.txt
 
-- Cloudflare cache tips: https://www.youtube.com/watch?v=5v_nM4zIzRk
+- Tutorial: https://www.youtube.com/watch?v=x919YC8UUTo
