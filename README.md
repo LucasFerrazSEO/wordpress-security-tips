@@ -3,4 +3,4 @@ Here you will get some wordpress security tips, protecting yours websites agains
 
 Resources and functions:
 - htaccess: https://github.com/LucasFerraz/wordpress-security-tips/blob/main/htaccess.txt
-- theme functions: 
+- theme functions: https://github.com/LucasFerraz/wordpress-security-tips/blob/main/theme%20functions.php
