@@ -1,7 +1,5 @@
-Theme Function
-
+Theme Functions
 <?php
-
 // remove unnecessary header information
 function remove_header_info() {
     remove_action('wp_head', 'feed_links_extra', 3);
