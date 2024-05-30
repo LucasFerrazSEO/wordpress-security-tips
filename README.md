@@ -7,3 +7,5 @@ Resources and functions:
 - Cloudflare rules: https://github.com/LucasFerrazSEO/wordpress-security-tips/blob/main/cloudflare%20rules.txt
 
 - Tutorial: https://www.youtube.com/watch?v=x919YC8UUTo
+
+My contacts: https://lucasferrazseo.com/
