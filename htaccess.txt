@@ -41,7 +41,6 @@ RewriteEngine On
 <IfModule mod_headers.c>
     RewriteEngine on
     RewriteCond %{HTTP_REFERER} !^http(s)?://([a-z0-9\-]+\.)?(www\.)?YOUR-WEBSITE.com/.*$ [NC]
-    RewriteCond %{HTTP_REFERER} !^http(s)?://([a-z0-9\-]+\.)?(www\.)?ebc.com.br/.*$ [NC]
     RewriteCond %{HTTP_REFERER} !^http(s)?://([a-z0-9\-]+\.)?(www\.)?facebook.com/.*$ [NC]
     RewriteCond %{HTTP_REFERER} !^http(s)?://([a-z0-9\-]+\.)?(www\.)?google./.*$ [NC]
     RewriteCond %{HTTP_REFERER} !^http(s)?://([a-z0-9\-]+\.)?(www\.)?instagram.com/.*$ [NC]

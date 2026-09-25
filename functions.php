@@ -1,5 +1,6 @@
-Theme Functions
 <?php
+/* Theme Functions — dicas de segurança para o functions.php do tema */
+
 // remove unnecessary header information
 function remove_header_info() {
     remove_action('wp_head', 'feed_links_extra', 3);
@@ -30,7 +31,10 @@ add_filter( 'wp_xmlrpc_server_class', '__return_false' );
 add_filter('xmlrpc_enabled', '__return_false');
 
 //Remove error mesage in login
-add_filter('login_errors',create_function('$a', "return 'Invalid Input';"));
+// create_function() foi removida no PHP 8.0; usar closure equivalente.
+add_filter('login_errors', function ($a) {
+    return 'Invalid Input';
+});
 
 // remove various feeds
 
@@ -45,7 +49,10 @@ add_action('do_feed_rss', 'fb_disable_feed', 1);
 add_action('do_feed_atom', 'fb_disable_feed', 1);
 add_action('do_feed_rss2_comments', 'fb_disable_feed', 1);
 add_action('do_feed_atom_comments', 'fb_disable_feed', 1);
-show_admin_bar( false );
+
+// show_admin_bar() precisa rodar dentro do hook certo do ciclo de vida
+// do WordPress — chamar direto no topo do arquivo não tem efeito.
+add_filter('show_admin_bar', '__return_false');
 
 //disable redirect to login page: http://wordpress.stackexchange.com/questions/85529/how-to-disable-multisite-sign-up-page
 function rbz_prevent_multisite_signup() 
