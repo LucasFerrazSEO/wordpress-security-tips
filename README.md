@@ -1,74 +1,94 @@
+**English** · [Português (Brasil)](README.pt-BR.md)
+
 # wordpress-security-tips
 
-Conjunto de trechos de código para reforçar a segurança de um site
-WordPress: `.htaccess`, funções para `functions.php` e regras de WAF
-para quem usa Cloudflare.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## Arquivos
+A set of code snippets to harden a WordPress site: `.htaccess` rules,
+functions for `functions.php` and WAF rules for sites behind
+Cloudflare. Everything is copy and paste, with no plugin.
 
-- **`htaccess.txt`** — bloqueia `xmlrpc.php`, força HTTPS e barra
-  hotlinking de imagens (uso do seu site em outro domínio sem
-  autorização), entre outras regras.
-- **`functions.php`** — remove informações de versão do WordPress no
-  `<head>`, desativa o XML-RPC, remove o header `X-Pingback` e outras
-  reduções de superfície de ataque.
-- **`cloudflare rules.txt`** — duas regras de WAF (Web Application
-  Firewall) prontas para colar no Cloudflare: uma bloqueia
-  user-agents e assinaturas de scanner conhecidas (incluindo a
-  assinatura do scanner de RDP Bluekeep e do masscan), a outra
-  bloqueia tentativas comuns de SQL injection e XSS na query string.
+## Contents
 
-## Como usar
+- [Files](#files)
+- [Usage](#usage)
+- [FAQ](#faq)
+- [Limitations](#limitations)
+- [Contributing](#contributing)
+- [Author](#author)
+- [License](#license)
+
+## Files
+
+- **`htaccess.txt`**: blocks `xmlrpc.php`, forces HTTPS and blocks image
+  hotlinking (other domains using your images without permission),
+  among other rules.
+- **`functions.php`**: removes WordPress version information from
+  `<head>`, disables XML-RPC, removes the `X-Pingback` header and makes
+  other attack surface reductions.
+- **`cloudflare rules.txt`**: two WAF (Web Application Firewall) rules
+  ready to paste into Cloudflare. One blocks known scanner user agents
+  and signatures (including the BlueKeep RDP scanner and masscan
+  signatures, and the AhrefsBot 7.0 user agent). The other blocks
+  common SQL injection and XSS attempts in the query string.
+
+## Usage
 
 ### htaccess.txt
 
-1. Abra o `.htaccess` do seu site (raiz do WordPress).
-2. Cole o conteúdo de `htaccess.txt` — de preferência logo após as
-   regras padrão do WordPress (`# BEGIN WordPress` / `# END WordPress`).
-3. Na seção de proteção contra hotlink, troque `YOUR-WEBSITE.com` pelo
-   seu domínio real.
-4. Teste o site depois de salvar — uma regra mal colada pode gerar
-   erro 500.
+1. Open your site's `.htaccess` (WordPress root).
+2. Paste the contents of `htaccess.txt`, ideally right after the
+   default WordPress rules (`# BEGIN WordPress` / `# END WordPress`).
+   Leave out the first line of the file (`htaccess`), which is only a
+   label and is not a valid directive.
+3. In the hotlink protection section, replace `YOUR-WEBSITE.com` with
+   your real domain.
+4. Test the site after saving. A badly pasted rule can cause a 500
+   error.
 
 ### functions.php
 
-Copie os blocos de função para o `functions.php` do seu tema (ou tema
-filho). Cada bloco é independente; não precisa usar todos.
+Copy the function blocks into your theme's (or child theme's)
+`functions.php`. Each block is independent; you do not have to use all
+of them.
 
 ### cloudflare rules.txt
 
-No painel da Cloudflare: **Security → WAF → Create Rule**. Cole a
-expressão de cada regra (o arquivo já vem no formato de expressão do
-Cloudflare) e defina a ação como **Block**.
+In the Cloudflare dashboard, go to **Security → WAF → Create Rule**.
+Paste the expression of each rule (the file already uses the
+Cloudflare expression format) and set the action to **Block**.
 
-## Perguntas frequentes
+## FAQ
 
-**Isso substitui um plugin de segurança (Wordfence, Sucuri etc.)?**
-Não. É uma camada adicional, de baixo custo e sem plugin — útil mesmo
-em conjunto com um plugin de segurança, não no lugar dele.
+**Does this replace a security plugin (Wordfence, Sucuri, etc.)?**
+No. It is an extra layer, cheap and plugin-free. It is useful alongside
+a security plugin, not instead of one.
 
-**Preciso saber programar para usar?**
-Para o `.htaccess` e o Cloudflare, não — é copiar e colar. Para o
-`functions.php`, ajuda entender minimamente PHP para adaptar ao seu
-tema.
+**Do I need to know how to code to use it?**
+For `.htaccess` and Cloudflare, no: it is copy and paste. For
+`functions.php`, a basic understanding of PHP helps you adapt it to
+your theme.
 
-**Essas regras de Cloudflare bloqueiam gente de verdade por engano?**
-Podem gerar falso positivo em casos raros (uma query string legítima
-que contenha, por exemplo, a palavra "select"). Monitore o log de
-eventos do WAF depois de ativar.
+**Can these Cloudflare rules block real people by mistake?**
+They can cause false positives in rare cases (for example, a
+legitimate query string containing `%40`, an encoded "@"). Watch the
+WAF event log after turning them on.
 
-## Limitações
+## Limitations
 
-Trechos de código para adaptar ao seu ambiente — não é um plugin
-com atualização automática nem suporte a todo hosting (algumas
-diretivas do `.htaccess` dependem de o servidor rodar Apache com
-`mod_rewrite` e `mod_headers` habilitados).
+Code snippets to adapt to your environment. This is not a plugin with
+automatic updates and it does not support every host (some `.htaccess`
+directives require Apache with `mod_rewrite` and `mod_headers`
+enabled).
 
-## Autor
+## Contributing
 
-[Lucas Ferraz](https://lucasferraz.com) — especialista em SEO, criação de
-sites e SEO para IA, fundador da [Lucas Ferraz SEO](https://lucasferrazseo.com).
+Bug reports and suggestions are welcome through [GitHub Issues](https://github.com/LucasFerrazSEO/wordpress-security-tips/issues).
 
-## Licença
+## Author
 
-MIT — ver [LICENSE](LICENSE).
+[Lucas Ferraz](https://lucasferraz.com) is an SEO, website development and Generative Engine Optimization specialist and the founder of [Lucas Ferraz SEO](https://lucasferrazseo.com).
+
+## License
+
+MIT. See [LICENSE](LICENSE).
